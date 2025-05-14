@@ -17,9 +17,9 @@ echo ">>> Restarting MySQL to apply network config..."
 sudo systemctl restart mysql
 
 echo ">>> Creating database and user..."
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS devopsdb;"
-sudo mysql -e "CREATE USER IF NOT EXISTS 'mydbuser'@'%' IDENTIFIED BY 'Demo@123';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON devopsdb.* TO 'mydbuser'@'%';"
-sudo mysql -e "FLUSH PRIVILEGES;"
+ mysql -u root -e "CREATE DATABASE IF NOT EXISTS devopsdb;"
+ mysql -e "CREATE USER IF NOT EXISTS 'mydbuser'@'%' IDENTIFIED BY 'Demo@123';"
+ mysql -e "GRANT ALL PRIVILEGES ON devopsdb.* TO 'mydbuser'@'%';"
+ mysql -e "FLUSH PRIVILEGES;"
 
 echo ">>> MySQL provisioning complete. Database 'devopsdb' with user 'mydbuser' is ready."

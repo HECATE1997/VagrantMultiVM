@@ -25,16 +25,27 @@ Vagrant.configure("2") do |config|
     web.vm.provision "shell", path: "provision-web.sh"
   end
 
-    config.vm.define "db" do |db|
-      db.vm.hostname = "dbserver"
-      db.vm.network "private_network", ip: "192.168.56.11"
-      db.vm.provider "virtualbox" do |vb|
-        vb.name = "ubuntu-dbserver"
-        vb.memory = 2048
-        vb.cpus = 2
-      end
-      db.vm.provision "shell", path: "provision-db.sh"
+  config.vm.define "db" do |db|
+    db.vm.hostname = "dbserver"
+    db.vm.network "private_network", ip: "192.168.56.11"
+    db.vm.provider "virtualbox" do |vb|
+      vb.name = "ubuntu-dbserver"
+      vb.memory = 2048
+      vb.cpus = 2
     end
+    db.vm.provision "shell", path: "provision-db.sh"
+  end
+
+  config.vm.define "webNew" do |webn|
+    webn.vb.hostname = "NewWebServer"
+    webn.vb.network = "private_network", ip: "192.168.56.12"
+    webn.provider "virtualbox" do |vb|
+      vb.name="new-ubuntu-webserver"
+      vb.cpus = 2
+      vb.memory = 2048
+    end
+    webn.vm.provision "shell", path: "new-provision-web.sh"
+  end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
