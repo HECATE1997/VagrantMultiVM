@@ -37,9 +37,9 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "webNew" do |webn|
-    webn.vb.hostname = "NewWebServer"
-    webn.vb.network = "private_network", ip: "192.168.56.12"
-    webn.provider "virtualbox" do |vb|
+    webn.vm.hostname = "NewWebServer"
+    webn.vm.network "private_network", ip: "192.168.56.12"
+    webn.vm.provider "virtualbox" do |vb|
       vb.name="new-ubuntu-webserver"
       vb.cpus = 2
       vb.memory = 2048
